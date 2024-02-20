@@ -167,6 +167,3 @@ Extensões para o VSCode em Linux:
 - CSS Formatter
 - tsfmt - TypeScript Formatter
 - JavaScript Debugger	
-
-
-# containers

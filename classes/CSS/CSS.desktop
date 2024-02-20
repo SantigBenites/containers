@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=CSS
+GenericName=CSS
+Comment=Container for CSS
+Icon=/usr/local/share/icons/fcul/CSS.png
+Exec=/opt/containers/CSS/run_cli.sh
+Terminal=true
+Type=Application
+Categories=Development;

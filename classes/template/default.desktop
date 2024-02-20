@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=DEFAULT
+GenericName=DAFAULT
+Comment=DAFAULT
+Icon=/usr/local/share/icons/fcul/DEFAULT.png
+Exec=/opt/containers/DEFAULT/run_cli.sh
+Terminal=true
+Type=Application
+Categories=Development;
