@@ -10,7 +10,7 @@ I will make containers for all apps I might need
 
 ## Class Requirements
 
-### BI
+### BI done
 
 python3
 
@@ -19,7 +19,7 @@ pip
 - merpy
 - biopython
 
-### OAC
+### OAC done
 
 
 apt install dos2unix curl libxml2-utils sqlite3 emacs git cut ca-certificates
@@ -69,7 +69,7 @@ O que é essencial estar no container, para além do gcc e coisas básicas, são
 - protobuf-c
 - zookeeper para C
 
-### PPC
+### PPC done
 
 
 
@@ -78,7 +78,7 @@ Rust, Cargo, VSCode, Java 21
 - Extension Pack for Java (https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack) 
 
 
-### BI
+### BI done
 
 python3
 
