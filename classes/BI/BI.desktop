@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=BI
+GenericName=BI
+Comment=Container para BioInformatica
+Icon=/usr/local/share/icons/fcul/BI.png
+Exec=/opt/containers/BI/run_cli.sh
+Terminal=true
+Type=Application
+Categories=Development;

@@ -10,15 +10,15 @@ export APPTAINER_DISABLE_CACHE=1
 
 mkdir -p "$HOME/.ssh"
 
-if ! apptainer instance list | grep -cq "OAC"; then
-    apptainer instance start /opt/sifs/OAC.sif OAC
+if ! apptainer instance list | grep -cq "BI"; then
+    apptainer instance start /opt/sifs/BI.sif BI
 fi
 
 
 if [[ "$RUN_TARGET" == "code" ]]; then
     code --remote ssh-remote+apptainer-fcul
 elif [[ "$RUN_TARGET" == "shell" ]]; then
-    apptainer shell instance://OAC
+    apptainer shell instance://BI
 elif [[ "$RUN_TARGET" == "stop" ]]; then
-    apptainer instance stop OAC
+    apptainer instance stop BI
 fi

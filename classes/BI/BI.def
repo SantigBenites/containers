@@ -47,15 +47,13 @@ supervisord.conf /etc/supervisord.conf
     
     ## Introduce requirements
 
-    export DEBIAN_FRONTEND=noninteractive
-
-    apt-get install -y dos2unix curl libxml2-utils sqlite3 emacs git ca-certificates unzip
-
-    apt-get -y install python3.6
+    apt-get -y install python3.8
 
     apt-get -y install python3-pip
 
-    pip3 install rdflib
+    pip3 install --upgrade pip
+
+    pip3 install merpy biopython
 
     mkdir -p "/.vscode-server/data/Machine"
     cat <<EOF > "/.vscode-server/data/Machine/settings.json"
@@ -66,7 +64,7 @@ supervisord.conf /etc/supervisord.conf
 
 
 %environment
-export PROMPT_PREFIX="OAC"
+export PROMPT_PREFIX="BI"
 export PS1="${debian_chroot:+($debian_chroot)}\[\033[01;36m\]($PROMPT_PREFIX) \[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ "
 
 
