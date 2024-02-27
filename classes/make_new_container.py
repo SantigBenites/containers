@@ -1,7 +1,7 @@
 import os, shutil, subprocess
 
 # Intruduce Acronym
-ACRONYM = "CSS"
+ACRONYM = "OAC"
 
 # Consts
 CURRENT_DIR = os.getcwd()

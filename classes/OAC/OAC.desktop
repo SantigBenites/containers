@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=OAC
+GenericName=Ontologias aplicadas às Ciências
+Comment=Container para Ontologias aplicadas às Ciências
+Icon=/usr/local/share/icons/fcul/OAC.png
+Exec=/opt/containers/OAC/run_cli.sh
+Terminal=true
+Type=Application
+Categories=Development;
