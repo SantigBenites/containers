@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=SD
+GenericName=SD
+Comment=Container para Sistemas Distribuidos 
+Icon=/usr/local/share/icons/fcul/SD.png
+Exec=/opt/containers/SD/run_cli.sh
+Terminal=true
+Type=Application
+Categories=Development;

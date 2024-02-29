@@ -1,0 +1,95 @@
+Bootstrap: oras
+From: registry.di.fc.ul.pt/util/dropbear:latest
+Stage: dropbear
+
+Bootstrap: docker
+From: docker.io/ochinchina/supervisord:latest
+Stage: supervisord
+
+Bootstrap: docker
+From: ubuntu:20.04
+
+%files from dropbear
+# Copy statically-linked dropbear SSH server binary
+/usr/local/bin/dropbear
+
+%files from supervisord
+# Copy statically-linked supervisord (Go) binary
+/usr/local/bin/supervisord
+
+%files
+# Apptainer/Singularity definition files mandate that files are copied before %post.
+# Some apt packages may complain about configuration files from "previous installations".
+bash.bashrc /etc/bash.bashrc
+entrypoint.sh /entrypoint.sh
+supervisord.conf /etc/supervisord.conf
+
+
+%post
+
+    chmod 755 /entrypoint.sh
+
+
+    # We need to create a directory for dropbear's SSH host keys
+    mkdir -p /etc/dropbear
+
+    # We also need to export PATH in %post due to Apptainer's environment variable precedence.
+    # See: https://apptainer.org/docs/user/main/environment_and_metadata.html#environment-variable-precedence
+    echo "export PATH=$PATH:$NPM_CONFIG_PREFIX/bin" >> "$APPTAINER_ENVIRONMENT" \
+
+
+    # Start update
+    apt-get update \
+    && apt-get install -y \
+    curl \
+    wget \
+    openssh-client
+    
+    ## Introduce requirements
+    export PATH="${PATH}:/opt/apache-zookeeper-3.5.9-bin/bin"
+
+
+    apt-get update && apt-get upgrade -y && \
+    apt-get install -y make && \
+    apt-get install -y gcc && \
+    apt-get install -y gdb && \
+    apt-get install -y valgrind && \
+    apt-get install -y ddd && \
+    apt-get install -y vim && \
+    apt-get install -y nano
+
+
+    wget https://archive.apache.org/dist/zookeeper/zookeeper-3.5.9/apache-zookeeper-3.5.9-bin.tar.gz && \
+    tar xvzf apache-zookeeper-3.5.9-bin.tar.gz && \
+    rm apache-zookeeper-3.5.9-bin.tar.gz && \
+    mkdir -p -m 777 ./apache-zookeeper-3.5.9-bin/logs && \
+    cd apache-zookeeper-3.5.9-bin/conf && \
+    mv zoo_sample.cfg zoo.cfg
+
+    apt-get install -y libzookeeper-mt-dev && \
+    ldconfig
+
+    apt-get install -y protobuf-compiler && \
+    apt-get install -y protobuf-c-compiler && \
+    apt-get install -y libprotobuf-c-dev
+
+    mkdir -p "/.vscode-server/data/Machine"
+    cat <<EOF > "/.vscode-server/data/Machine/settings.json"
+    {
+        "js/ts.implicitProjectConfig.checkJs": true
+    }
+    EOF
+
+
+%environment
+export PROMPT_PREFIX="SD"
+export PS1="${debian_chroot:+($debian_chroot)}\[\033[01;36m\]($PROMPT_PREFIX) \[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ "
+
+
+
+%runscript
+
+
+%startscript
+/entrypoint.sh
+

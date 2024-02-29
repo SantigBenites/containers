@@ -1,7 +1,7 @@
 import os, shutil, subprocess
 
 # Intruduce Acronym
-ACRONYM = "BI"
+ACRONYM = "SD"
 
 # Consts
 CURRENT_DIR = os.getcwd()
